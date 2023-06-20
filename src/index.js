@@ -437,16 +437,16 @@ class FogParticle
         this.maxX = this.maxRad * Math.cos(this.angle);
         this.maxZ = this.maxRad * Math.sin(this.angle);
 
-        this.dx = this.maxX / 5000;
-        this.dz = this.maxZ / 5000;
+        this.dx = 0.0;
+        this.dz = 0.0;
         this.dy = (this.initHeight - this.endHeight) / 1000;
 
 
 
-        this.x = this.maxX * Math.random();
+        this.x = Math.random() * 2 * this.maxRad - this.maxRad;
         //this.y = this.initHeight - Math.random() * (this.initHeight - this.endHeight);
-        this.y = this.initHeight;
-        this.z = this.maxZ * Math.random();
+        this.y = Math.random() * (this.initHeight - this.endHeight) + this.initHeight;
+        this.z = Math.random()  * 2 * this.maxRad - this.maxRad;
     }
 
     move()
@@ -457,6 +457,7 @@ class FogParticle
 
         this.dx += (Math.random() * 2 - 1) / 20000
         this.dz += (Math.random() * 2 - 1) / 20000
+        this.dy += Math.random() / 20000000
 
         if (Math.sqrt(this.x * this.x + this.z * this.z) > this.maxRad)
         {
@@ -466,6 +467,7 @@ class FogParticle
 
             this.dx = this.maxX / 5000;
             this.dz = this.maxZ / 5000;
+            this.dy = (this.initHeight - this.endHeight) / 1000;
         }
 
 
